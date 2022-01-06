@@ -1,32 +1,47 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class playerscript : MonoBehaviour
 {
-    Rigidbody2D rb;
-    public float playerForce = 3000f;
+    private CharacterController controller;
+    private Vector3 playerVelocity;
+    private bool groundedPlayer;
+    private float playerSpeed = 2.0f;
+    private float jumpHeight = 1.0f;
+    private float gravityValue = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        playerForce *= Time.deltaTime;
+        controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        
-        if (Input.GetKeyDown("right"))
-        {
-            rb.AddForce(new Vector2(playerForce, 0));
-        }
-        if (Input.GetKeyUp("right")) rb.AddForce(new Vector2(-playerForce, 0));
+        float forward = Input.GetAxis("Horizontal"), upward = Input.GetAxis("Vertical");
+        Debug.Log(forward);
+        Debug.Log(upward);
+        // groundedPlayer = controller.isGrounded;
+        // if (groundedPlayer && playerVelocity.y < 0)
+        // {
+        //     playerVelocity.y = 0f;
+        // }
 
-        if (Input.GetKeyDown("left"))
-        {
-            rb.AddForce(new Vector2(-playerForce, 0));
-        }
-        if (Input.GetKeyUp("left")) rb.AddForce(new Vector2(playerForce, 0));
+        // Vector3 move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        // controller.Move(move * Time.deltaTime * playerSpeed);
+
+        // if (move != Vector3.zero)
+        // {
+        //     transform.forward = move;
+        // }
+
+        // // Changes the height position of the player..
+        // if (Input.GetButtonDown("Jump") && groundedPlayer)
+        // {
+        //     playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+        // }
+
+        // playerVelocity.y += gravityValue * Time.deltaTime;
+        // controller.Move(playerVelocity * Time.deltaTime);
     }
 }
