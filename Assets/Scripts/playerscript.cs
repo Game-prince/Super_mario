@@ -7,20 +7,33 @@ public class playerscript : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    private float playerSpeed = 2.0f;
+    private float playerSpeed = 5.0f;
     private float jumpHeight = 1.0f;
     private float gravityValue = 0;
+    private Animator anim;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         float forward = Input.GetAxis("Horizontal"), upward = Input.GetAxis("Vertical");
-        Debug.Log(forward);
-        Debug.Log(upward);
+        controller.Move(new Vector3(playerSpeed * forward, 0, 0) * Time.deltaTime);
+
+        if (forward != 0) 
+        {
+            anim.SetFloat("speed", 1);
+            if (forward < 0) transform.eulerAngles = new Vector3(0, 180, 0);
+            else transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else anim.SetFloat("speed", 0);
+
+        if (upward != 0) anim.SetBool("isJumping", true);
+        else anim.SetBool("isJumping", false);
+
         // groundedPlayer = controller.isGrounded;
         // if (groundedPlayer && playerVelocity.y < 0)
         // {
