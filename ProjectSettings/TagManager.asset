@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Background
   - Terrain
+  - collectable
+  - Box
   layers:
   - Default
   - TransparentFX
@@ -48,4 +50,7 @@ TagManager:
     locked: 0
   - name: Terrain
     uniqueID: 2641701891
+    locked: 0
+  - name: Objects
+    uniqueID: 3072794209
     locked: 0
