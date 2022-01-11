@@ -6,6 +6,7 @@ public class playerMovements : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
+    private int jumpVelocity = 16;
 
     private enum movementState {idle, running, jumping, falling};
 
@@ -35,7 +36,7 @@ public class playerMovements : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (!(rb.velocity.y > .1f || rb.velocity.y < -.1f)) rb.velocity = new Vector2(rb.velocity.x, 14);
+            if (!(rb.velocity.y > .1f || rb.velocity.y < -.1f)) rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
         }
 
         if (rb.velocity.y > .1f) currentState = movementState.jumping;
