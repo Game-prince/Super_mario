@@ -6,7 +6,7 @@ public class playerMovements : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
-    private int jumpVelocity = 16;
+    private int jumpVelocity = 14;
 
     private enum movementState {idle, running, jumping, falling};
 
