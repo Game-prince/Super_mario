@@ -8,6 +8,7 @@ public class playerCollisionScript : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject diamond;
     [SerializeField] private Text scoreText;
+    [SerializeField] private GameObject enemy;
     private int score = 0;
 
 
@@ -22,6 +23,20 @@ public class playerCollisionScript : MonoBehaviour
                 Instantiate(diamond, position, Quaternion.identity);
             }
         }
+        
+        if (other.gameObject.tag == "Enemy")
+        {
+            // Debug.Log("Enemy encountered");
+            if (rb.velocity.y < -.1f) 
+            {
+                Destroy(other.gameObject);
+                score += 50;
+            }
+            else
+            {
+
+            }
+        }
 
     }
 
@@ -30,7 +45,10 @@ public class playerCollisionScript : MonoBehaviour
         {
             Destroy(other.gameObject);
             score++;
-            scoreText.text = "Score: " + score;
         }
+    }
+
+    private void FixedUpdate() {
+        scoreText.text = "Score: " + score;
     }
 }
