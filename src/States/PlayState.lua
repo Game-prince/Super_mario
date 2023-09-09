@@ -5,7 +5,8 @@ function PlayState:init()
 end
 
 function PlayState:render()
-  love.graphics.draw(gGraphics['background'], gTextures['background'][self.background], 0, 0)
+  love.graphics.draw(gGraphics['background'], gTextures['background'][self.background], 0, 0, 0, VIRTUAL_WIDTH / 256,
+    VIRTUAL_HEIGHT / 128)
 end
 
 function PlayState:update(dt)

@@ -10,6 +10,8 @@ function love.load()
   love.window.setTitle('Mario')
   love.graphics.setDefaultFilter('nearest', 'nearest')
 
+  math.randomseed(os.time())
+
   -- loading fonts
   gFonts = {
     ['normal'] = {
@@ -32,13 +34,14 @@ function love.load()
 
   -- loading graphics
   gGraphics = {
-    ['full_sheet'] = love.graphics.newImage('assets/graphics/full_sheet.png'),
-    ['background'] = love.graphics.newImage('assets/graphics/backgrounds.png')
+    ['background'] = love.graphics.newImage('assets/graphics/backgrounds.png'),
+    ['tile_tops'] = love.graphics.newImage('assets/graphics/tile_tops.png'),
   }
 
   -- loading textures
   gTextures = {
-    ['background'] = GetBackgrounds(gGraphics['background'])
+    ['background'] = GenerateQuads(gGraphics['background'], 256, 128),
+    ['tile_tops'] = GenerateQuads(gGraphics['tile_tops'],),
   }
 
   -- States
