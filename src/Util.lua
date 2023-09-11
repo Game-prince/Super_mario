@@ -21,4 +21,6 @@ function GenerateQuads(atlas, width, height)
       quads[#quads + 1] = love.graphics.newQuad(j * width, i * height, width, height, atlasWidth, altasHeight)
     end
   end
+
+  return quads
 end

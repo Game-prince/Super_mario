@@ -41,7 +41,7 @@ function love.load()
   -- loading textures
   gTextures = {
     ['background'] = GenerateQuads(gGraphics['background'], 256, 128),
-    ['tile_tops'] = GenerateQuads(gGraphics['tile_tops'],),
+    ['tile_tops'] = GenerateQuads(gGraphics['tile_tops'], 16, 16),
   }
 
   -- States
