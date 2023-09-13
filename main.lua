@@ -36,12 +36,24 @@ function love.load()
   gGraphics = {
     ['background'] = love.graphics.newImage('assets/graphics/backgrounds.png'),
     ['tile_tops'] = love.graphics.newImage('assets/graphics/tile_tops.png'),
+    ['tiles'] = love.graphics.newImage('assets/graphics/tiles.png'),
+    ['aliens'] = {
+      ['blue'] = love.graphics.newImage('assets/graphics/blue_alien.png'),
+      ['green'] = love.graphics.newImage('assets/graphis/geen_alien.png'),
+      ['pink'] = love.graphics.newImage('assets/graphics/pink_alien.png')
+    }
   }
 
   -- loading textures
   gTextures = {
     ['background'] = GenerateQuads(gGraphics['background'], 256, 128),
-    ['tile_tops'] = GenerateQuads(gGraphics['tile_tops'], 16, 16),
+    ['tile_tops'] = GenerateQuads(gGraphics['tile_tops'], TILE_SIZE, TILE_SIZE),
+    ['tiles'] = GenerateQuads(gGraphics['tiles'], TILE_SIZE, TILE_SIZE),
+    ['aliens'] = {
+      ['blue'] = GenerateQuads(gGraphics['aliens']['blue'], PLAYER_WIDTH, PLAYER_HEIGHT),
+      ['green'] = GenerateQuads(gGraphics['aliens']['green'], PLAYER_WIDTH, PLAYER_HEIGHT),
+      ['pink'] = GenerateQuads(gGraphics['aliens']['pink'], PLAYER_WIDTH, PLAYER_HEIGHT),
+    }
   }
 
   -- States

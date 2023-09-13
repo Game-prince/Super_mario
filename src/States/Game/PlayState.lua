@@ -2,6 +2,9 @@ PlayState = Class { __includes = BaseState }
 
 function PlayState:init()
   self.background = math.random(#gTextures['background'])
+  self.player = Player(50, 50, 'blue', StateMachine({
+
+  }))
 end
 
 function PlayState:render()
@@ -10,8 +13,8 @@ function PlayState:render()
     VIRTUAL_HEIGHT / 128)
 
   -- displaying all the tile tops
-  for i = 1, #gTextures['tile_tops'] do
-    love.graphics.draw(gGraphics['tile_tops'], gTextures['tile_tops'][i], (i - 1) * 16, VIRTUAL_HEIGHT - 16)
+  for i = 1, #gTextures['tiles'] do
+    love.graphics.draw(gGraphics['tiles'], gTextures['tile_tops'][i], (i - 1) * 16, VIRTUAL_HEIGHT - 16)
   end
 end
 
