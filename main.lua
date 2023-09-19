@@ -12,50 +12,6 @@ function love.load()
 
   math.randomseed(os.time())
 
-  -- loading fonts
-  gFonts = {
-    ['normal'] = {
-      ['small'] = love.graphics.newFont('assets/fonts/font.ttf', 8),
-      ['medium'] = love.graphics.newFont('assets/fonts/font.ttf', 16),
-      ['large'] = love.graphics.newFont('assets/fonts/font.ttf', 32),
-      ['huge'] = love.graphics.newFont('assets/fonts/font.ttf', 64)
-    },
-    ['fipps'] = {
-      ['small'] = love.graphics.newFont('assets/fonts/fipps.otf', 8),
-      ['medium'] = love.graphics.newFont('assets/fonts/fipps.otf', 16),
-      ['large'] = love.graphics.newFont('assets/fonts/fipps.otf', 32)
-    },
-    ['arcade'] = {
-      ['small'] = love.graphics.newFont('assets/fonts/ArcadeAlternate.ttf', 8),
-      ['medium'] = love.graphics.newFont('assets/fonts/ArcadeAlternate.ttf', 16),
-      ['large'] = love.graphics.newFont('assets/fonts/ArcadeAlternate.ttf', 32)
-    }
-  }
-
-  -- loading graphics
-  gGraphics = {
-    ['background'] = love.graphics.newImage('assets/graphics/backgrounds.png'),
-    ['tile_tops'] = love.graphics.newImage('assets/graphics/tile_tops.png'),
-    ['tiles'] = love.graphics.newImage('assets/graphics/tiles.png'),
-    ['aliens'] = {
-      ['blue'] = love.graphics.newImage('assets/graphics/blue_alien.png'),
-      ['green'] = love.graphics.newImage('assets/graphis/geen_alien.png'),
-      ['pink'] = love.graphics.newImage('assets/graphics/pink_alien.png')
-    }
-  }
-
-  -- loading textures
-  gTextures = {
-    ['background'] = GenerateQuads(gGraphics['background'], 256, 128),
-    ['tile_tops'] = GenerateQuads(gGraphics['tile_tops'], TILE_SIZE, TILE_SIZE),
-    ['tiles'] = GenerateQuads(gGraphics['tiles'], TILE_SIZE, TILE_SIZE),
-    ['aliens'] = {
-      ['blue'] = GenerateQuads(gGraphics['aliens']['blue'], PLAYER_WIDTH, PLAYER_HEIGHT),
-      ['green'] = GenerateQuads(gGraphics['aliens']['green'], PLAYER_WIDTH, PLAYER_HEIGHT),
-      ['pink'] = GenerateQuads(gGraphics['aliens']['pink'], PLAYER_WIDTH, PLAYER_HEIGHT),
-    }
-  }
-
   -- States
   gStateMachine = StateMachine {
     ['title'] = function() return TitleState() end,

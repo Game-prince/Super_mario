@@ -32,7 +32,7 @@ function Entity:update(dt)
 end
 
 function Entity:render()
-  love.graphics.draw(gGraphics[self.texture], gTextures[self.texture][self.animation:getCurrentFrame()],
+  love.graphics.draw(gGraphics[self.texture], gTextures[self.texture][self.currentAnimation:getCurrentFrame()],
     math.floor(self.x) + 8, math.floor(self.y) + 10, 0, self.direction == "right" and 1 or -1, 1, 8, 10)
 end
 
