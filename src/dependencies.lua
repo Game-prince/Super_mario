@@ -7,6 +7,8 @@ require 'src/Util'
 require 'src.Player'
 require 'src.Animation'
 require 'src.Entitiy'
+require 'src.TileMap'
+require 'src.Tiles'
 
 
 require 'src/StateMachine'
