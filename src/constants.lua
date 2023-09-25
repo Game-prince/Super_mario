@@ -38,6 +38,10 @@ TILE_SETS = TILE_SETS_WIDE * TILE_SETS_TALL
 -- player walking speed
 PLAYER_WALK_SPEED = 60
 
+-- Player width and height
+PLAYER_WIDTH = 16
+PLAYER_HEIGHT = 20
+
 -- player jumping velocity
 PLAYER_JUMP_VELOCITY = -150
 

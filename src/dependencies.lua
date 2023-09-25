@@ -4,11 +4,12 @@ Timer = require 'lib/knife.timer'
 
 require 'src/constants'
 require 'src/Util'
-require 'src.Player'
+
 require 'src.Animation'
-require 'src.Entitiy'
 require 'src.TileMap'
 require 'src.Tiles'
+require 'src.Entity'
+require 'src.Player'
 
 
 require 'src/StateMachine'
@@ -17,6 +18,9 @@ require 'src/StateMachine'
 require 'src/States/BaseState'
 require 'src.States.Game.TitleState'
 require 'src.States.Game.PlayState'
+
+-- player states
+require 'src.States.Player.PlayerIdleState'
 
 -- loading fonts
 gFonts = {

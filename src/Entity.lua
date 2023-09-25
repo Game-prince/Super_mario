@@ -19,8 +19,6 @@ function Entity:init(def)
   self.direction = "left"
   self.map = def.map
   self.level = def.level
-
-  self.animation = def.animation
 end
 
 function Entity:changeState(state)
@@ -32,7 +30,7 @@ function Entity:update(dt)
 end
 
 function Entity:render()
-  love.graphics.draw(gGraphics[self.texture], gTextures[self.texture][self.currentAnimation:getCurrentFrame()],
+  love.graphics.draw(gTextures[self.texture], gFrames[self.texture][self.currentAnimation:getCurrentFrame()],
     math.floor(self.x) + 8, math.floor(self.y) + 10, 0, self.direction == "right" and 1 or -1, 1, 8, 10)
 end
 

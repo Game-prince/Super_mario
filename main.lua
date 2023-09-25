@@ -33,6 +33,7 @@ function love.draw()
 end
 
 function love.update(dt)
+  love.graphics.clear()
   love.graphics.setBackgroundColor(169 / 255, 169 / 255, 169 / 255, 255 / 255)
   gStateMachine:update(dt)
 

@@ -11,10 +11,10 @@ end
 
 function PlayerIdleState:update(dt)
   if love.keyboard.isDown('left') or love.keyboard.isDown('right') then
-    self.player:changeState('walking')
+    self.player:changeState('running')
   end
 
-  if love.keyboard.wasPressed('space') then
-    self.player:changeState('jump')
-  end
+  -- if love.keyboard.wasPressed('space') then
+  --   self.player:changeState('jump')
+  -- end
 end
