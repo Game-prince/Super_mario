@@ -26,7 +26,7 @@ function Entity:changeState(state)
 end
 
 function Entity:update(dt)
-  self.stateMachine.update(dt)
+  self.stateMachine:update(dt)
 end
 
 function Entity:render()

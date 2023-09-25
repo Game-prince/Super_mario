@@ -41,6 +41,9 @@ function PlayState:init()
     texture = 'green-alien',
     stateMachine = StateMachine({
       ['idle'] = function() return PlayerIdleState(self.player) end,
+      ['running'] = function() return PlayerRunningState(self.player) end,
+      ['jump'] = function() return PlayerJumpState(self.player) end,
+      ['falling'] = function() return PlayerFallingState(self.player) end
     }),
     map = self.tilemap,
     level = 1
@@ -52,6 +55,8 @@ function PlayState:render()
   love.graphics.translate(math.floor(self.cameraScroll), 0)
   love.graphics.clear(0.5, 0.5, 0.5, 1)
 
+
+
   -- setting the background
   love.graphics.draw(gTextures['backgrounds'], gFrames['backgrounds'][self.background], 0, 0, 0, VIRTUAL_WIDTH / 256,
     VIRTUAL_HEIGHT / 128)
@@ -61,13 +66,15 @@ function PlayState:render()
 end
 
 function PlayState:update(dt)
-  -- self.player:update(dt)
+  self.player:update(dt)
   self.tilemap:update(dt)
 
-  if love.keyboard.isDown("right") then
-    self.cameraScroll = self.cameraScroll - PLAYER_WALK_SPEED * dt
-  elseif love.keyboard.isDown("left") then
-    self.cameraScroll = self.cameraScroll + PLAYER_WALK_SPEED * dt
+  if self.player.x + PLAYER_WIDTH / 2 >= VIRTUAL_WIDTH / 2 then
+    if love.keyboard.isDown("right") then
+      self.cameraScroll = self.cameraScroll - PLAYER_WALK_SPEED * dt
+    elseif love.keyboard.isDown("left") then
+      self.cameraScroll = self.cameraScroll + PLAYER_WALK_SPEED * dt
+    end
   end
 end
 

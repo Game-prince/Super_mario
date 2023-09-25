@@ -21,6 +21,9 @@ require 'src.States.Game.PlayState'
 
 -- player states
 require 'src.States.Player.PlayerIdleState'
+require 'src.States.Player.PlayerRunningState'
+require 'src.States.Player.PlayerJumpState'
+require 'src.States.Player.PlayerFallingState'
 
 -- loading fonts
 gFonts = {
