@@ -45,6 +45,10 @@ PLAYER_HEIGHT = 20
 -- player jumping velocity
 PLAYER_JUMP_VELOCITY = -150
 
+-- probability of different events
+PIT_CHANCE = 15
+WALL_CHANCE = 12
+
 -- Gravity
 GRAVITY = 6
 

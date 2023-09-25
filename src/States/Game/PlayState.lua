@@ -3,34 +3,12 @@ PlayState = Class { __includes = BaseState }
 function PlayState:init()
   -- background for our game
   self.background = math.random(#gFrames['backgrounds'])
+  self.backgroundX = 0
 
   -- position of camera
   self.cameraScroll = 0
 
-  -- width and height of tilemap
-  self.width = VIRTUAL_WIDTH / TILE_SIZE
-  self.height = VIRTUAL_HEIGHT / TILE_SIZE
-
-  -- creating tilemap
-  self.tilemap = TileMap(self.width, self.height)
-
-  -- creating topperset and tileset
-  self.topperset = math.random(20)
-  self.tileset = math.random(20)
-
-  -- creating tiles in the tilemap
-  self.tilemap.tiles = {}
-  for y = 1, self.height do
-    table.insert(self.tilemap.tiles, {})
-
-    for x = 1, self.width do
-      local tileID = TILE_ID_GROUND
-      if y < 6 then
-        tileID = TILE_ID_EMPTY
-      end
-      table.insert(self.tilemap.tiles[y], Tiles(x, y, tileID, false, self.tileset, self.topperset))
-    end
-  end
+  self.tilemap = LevelGenerator.createLevel(100, VIRTUAL_HEIGHT / TILE_SIZE)
 
   -- creating player
   self.player = Player({
@@ -56,10 +34,15 @@ function PlayState:render()
   love.graphics.clear(0.5, 0.5, 0.5, 1)
 
 
-
   -- setting the background
-  love.graphics.draw(gTextures['backgrounds'], gFrames['backgrounds'][self.background], 0, 0, 0, VIRTUAL_WIDTH / 256,
-    VIRTUAL_HEIGHT / 128)
+  love.graphics.draw(gTextures['backgrounds'], gFrames['backgrounds'][self.background], math.floor(-self.backgroundX), 0)
+  love.graphics.draw(gTextures['backgrounds'], gFrames['backgrounds'][self.background], math.floor(-self.backgroundX),
+    gTextures['backgrounds']:getHeight() / 3 * 2, 0, 1, -1)
+  love.graphics.draw(gTextures['backgrounds'], gFrames['backgrounds'][self.background],
+    math.floor(-self.backgroundX + 256), 0)
+  love.graphics.draw(gTextures['backgrounds'], gFrames['backgrounds'][self.background],
+    math.floor(-self.backgroundX + 256),
+    gTextures['backgrounds']:getHeight() / 3 * 2, 0, 1, -1)
 
   self.tilemap:render()
   self.player:render()

@@ -10,6 +10,7 @@ require 'src.TileMap'
 require 'src.Tiles'
 require 'src.Entity'
 require 'src.Player'
+require 'src.LevelGenerator'
 
 
 require 'src/StateMachine'
