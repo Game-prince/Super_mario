@@ -54,13 +54,9 @@ function PlayState:update(dt)
 
   if self.player.x + PLAYER_WIDTH / 2 >= VIRTUAL_WIDTH / 2 then
     if love.keyboard.isDown("right") then
-      self.cameraScroll = self.cameraScroll - PLAYER_WALK_SPEED * dt
+      self.cameraScroll = self.cameraScroll - self.player.dx
     elseif love.keyboard.isDown("left") then
-      self.cameraScroll = self.cameraScroll + PLAYER_WALK_SPEED * dt
+      self.cameraScroll = self.cameraScroll - self.player.dx
     end
   end
-end
-
-function PlayState:enter(params)
-
 end
