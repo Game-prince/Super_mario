@@ -43,14 +43,14 @@ PLAYER_WIDTH = 16
 PLAYER_HEIGHT = 20
 
 -- player jumping velocity
-PLAYER_JUMP_VELOCITY = -250
+PLAYER_JUMP_VELOCITY = -205
 
 -- probability of different events
 PIT_CHANCE = 15
 WALL_CHANCE = 12
 
 -- Gravity
-GRAVITY = 8
+GRAVITY = 4 * 100
 
 -- snail movement speed
 SNAIL_MOVE_SPEED = 10

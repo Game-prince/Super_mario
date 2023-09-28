@@ -4,11 +4,12 @@ function PlayState:init()
   -- background for our game
   self.background = math.random(#gFrames['backgrounds'])
   self.backgroundX = 0
+  self.updateBackground = true
 
   -- position of camera
   self.cameraScroll = 0
 
-  self.tilemap = LevelGenerator.createLevel(100, VIRTUAL_HEIGHT / TILE_SIZE)
+  self.level = LevelGenerator.createLevel(100, VIRTUAL_HEIGHT / TILE_SIZE)
 
   -- creating player
   self.player = Player({
@@ -23,8 +24,8 @@ function PlayState:init()
       ['jump'] = function() return PlayerJumpState(self.player) end,
       ['falling'] = function() return PlayerFallingState(self.player) end
     }),
-    map = self.tilemap,
-    level = 1
+    map = self.level.tileMap,
+    level = self.level
   })
   self.player:changeState('idle')
 end
@@ -44,19 +45,31 @@ function PlayState:render()
     math.floor(-self.backgroundX + 256),
     gTextures['backgrounds']:getHeight() / 3 * 2, 0, 1, -1)
 
-  self.tilemap:render()
+  self.level:render()
   self.player:render()
 end
 
 function PlayState:update(dt)
-  self.player:update(dt)
-  self.tilemap:update(dt)
+  -- updating the level
+  self.level:clear()
+  self.level:update(dt)
 
+  -- updating the player
+  self.player:update(dt)
+
+  -- moving the background
   if self.player.x + PLAYER_WIDTH / 2 >= VIRTUAL_WIDTH / 2 then
     if love.keyboard.isDown("right") then
       self.cameraScroll = self.cameraScroll - self.player.dx
+      self.backgroundX = self.backgroundX + BACKGROUND_SCROLL_SPEED * dt - self.player.dx
     elseif love.keyboard.isDown("left") then
       self.cameraScroll = self.cameraScroll - self.player.dx
+      self.backgroundX = self.backgroundX - BACKGROUND_SCROLL_SPEED * dt - self.player.dx
     end
+  end
+
+  -- stopping the player to go beyond the left boundary
+  if self.player.x <= self.cameraScroll then
+    self.player.x = self.cameraScroll
   end
 end

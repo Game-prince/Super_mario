@@ -4,6 +4,12 @@ function LevelGenerator.createLevel(width, height)
   -- creating a tilemap
   local tilemap = TileMap(width, height)
 
+  -- entities
+  local entities = {}
+
+  -- objects
+  local objects = {}
+
   -- creating topperset and tileset
   local topper = true
   local topperset = math.random(20)
@@ -33,5 +39,10 @@ function LevelGenerator.createLevel(width, height)
     end
   end
 
-  return tilemap
+
+  return GameLevel({
+    entities = entities,
+    objects = objects,
+    tilemap = tilemap,
+  })
 end

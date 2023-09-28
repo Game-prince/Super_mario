@@ -49,8 +49,8 @@ function PlayerFallingState:update(dt)
   end
 
   -- applying gravity to the player
-  self.player.dy = self.player.dy + GRAVITY
-  self.player.y = self.player.y + (self.player.dy * dt)
+  self.player.dy = self.player.dy + GRAVITY * dt
+  self.player.y = self.player.y + self.player.dy * dt
 
   self.player.x = self.player.x + self.player.dx
 end

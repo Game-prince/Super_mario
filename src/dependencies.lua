@@ -11,6 +11,7 @@ require 'src.Tiles'
 require 'src.Entity'
 require 'src.Player'
 require 'src.LevelGenerator'
+require 'src.GameLevel'
 
 
 require 'src/StateMachine'

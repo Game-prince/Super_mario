@@ -30,10 +30,10 @@ end
 -- function to find if the collision below is happening or not
 function PlayerIdleState:collisionBottom()
   -- getting the tile at which the bottom-left of the player is
-  local bottomLeft = self.player.map:pointToTile(self.player.x + 1, self.player.y + self.player.height + 1)
+  local bottomLeft = self.player.map:pointToTile(self.player.x + 2, self.player.y + self.player.height + 1)
 
   -- getting the tile at which the bottom-right of the player is
-  local bottomRight = self.player.map:pointToTile(self.player.x + self.player.width - 1,
+  local bottomRight = self.player.map:pointToTile(self.player.x + self.player.width - 2,
     self.player.y + self.player.height + 1)
 
   -- if the bottom-left or bottom-right of the player is at a collidable tile return true
