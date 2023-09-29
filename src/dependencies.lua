@@ -12,6 +12,7 @@ require 'src.Entity'
 require 'src.Player'
 require 'src.LevelGenerator'
 require 'src.GameLevel'
+require 'src.GameObject'
 
 
 require 'src/StateMachine'
@@ -20,6 +21,7 @@ require 'src/StateMachine'
 require 'src/States/BaseState'
 require 'src.States.Game.TitleState'
 require 'src.States.Game.PlayState'
+require 'src.States.Game.GameOverState'
 
 -- player states
 require 'src.States.Player.PlayerIdleState'

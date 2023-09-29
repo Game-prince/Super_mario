@@ -45,6 +45,10 @@ function PlayState:render()
     math.floor(-self.backgroundX + 256),
     gTextures['backgrounds']:getHeight() / 3 * 2, 0, 1, -1)
 
+  -- display score
+  love.graphics.setFont(gFonts['normal']['small'])
+  love.graphics.printf("Score : " .. tostring(self.player.score), -self.cameraScroll, 0, VIRTUAL_WIDTH, "left")
+
   self.level:render()
   self.player:render()
 end
@@ -57,8 +61,8 @@ function PlayState:update(dt)
   -- updating the player
   self.player:update(dt)
 
-  -- moving the background
-  if self.player.x + PLAYER_WIDTH / 2 >= VIRTUAL_WIDTH / 2 then
+  -- moving the platform and background
+  if self.player.x + self.player.width / 2 >= -self.cameraScroll + VIRTUAL_WIDTH / 2 then
     if love.keyboard.isDown("right") then
       self.cameraScroll = self.cameraScroll - self.player.dx
       self.backgroundX = self.backgroundX + BACKGROUND_SCROLL_SPEED * dt - self.player.dx
@@ -71,5 +75,12 @@ function PlayState:update(dt)
   -- stopping the player to go beyond the left boundary
   if self.player.x <= self.cameraScroll then
     self.player.x = self.cameraScroll
+  end
+
+  -- if the player has fallen into the pit
+  if self.player.y > VIRTUAL_HEIGHT then
+    gStateMachine:change('game-over', {
+      score = self.player.score
+    })
   end
 end

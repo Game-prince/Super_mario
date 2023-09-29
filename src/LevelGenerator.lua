@@ -39,6 +39,44 @@ function LevelGenerator.createLevel(width, height)
     end
   end
 
+  -- creating jump boxes
+  for x = 1, width do
+    -- probability of instantiating a jump box
+    local createBox = math.random(20) == 1 and true or false
+
+    -- if createbox is false skip to the next iteration
+    if createBox == false or tilemap.tiles[8][x].id == TILE_ID_EMPTY then
+      goto continue
+    end
+
+    -- number of boxes to render
+    local boxcount = math.random(5)
+    for y = 1, boxcount do
+      if tilemap.tiles[8][x + y - 1].id == TILE_ID_EMPTY then
+        goto continue
+      end
+
+      table.insert(objects,
+        GameObject({
+          x = (x - 1 + y) * TILE_SIZE,
+          y = tilemap.tiles[5][x + y - 1].id == TILE_ID_GROUND and 3 * TILE_SIZE or 10 * TILE_SIZE,
+          width = TILE_SIZE,
+          height = TILE_SIZE,
+          texture = 'jump-blocks',
+          frame = math.random(#gFrames['jump-blocks']),
+          collidable = true,
+          consumable = false,
+          solid = true,
+          onConsume = function(player, object)
+            player.score = player.score + 100
+          end
+        }))
+    end
+
+    x = x + boxcount
+    ::continue::
+  end
+
 
   return GameLevel({
     entities = entities,
