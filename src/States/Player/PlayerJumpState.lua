@@ -78,6 +78,13 @@ function PlayerJumpState:collisionTop()
     return true
   end
 
+  -- checking collision with game objects
+  for k, object in pairs(self.player.level.objects) do
+    if object:collides(self.player) then
+      return true
+    end
+  end
+
   return false
 end
 

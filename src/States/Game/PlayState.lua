@@ -73,8 +73,8 @@ function PlayState:update(dt)
   end
 
   -- stopping the player to go beyond the left boundary
-  if self.player.x <= self.cameraScroll then
-    self.player.x = self.cameraScroll
+  if self.player.x <= -self.cameraScroll then
+    self.player.x = -self.cameraScroll
   end
 
   -- if the player has fallen into the pit

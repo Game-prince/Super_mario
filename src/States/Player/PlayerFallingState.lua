@@ -18,8 +18,7 @@ function PlayerFallingState:update(dt)
   -- if the player is colliding with any obstacle at bottom
   if self:collisionBottom() then
     self.player.dy = 0
-    self.player.y = (self.player.map:pointToTile(self.player.x, self.player.y + self.player.height).y - 1) * TILE_SIZE -
-        self.player.height - 1
+    self.player.y = self.player.y - 1
     self.player:changeState('idle')
   end
 
@@ -67,9 +66,16 @@ function PlayerFallingState:collisionBottom()
   -- if the bottom-left or bottom-right of the player is at a collidable tile return true
   if bottomLeft and bottomRight and (bottomLeft.id == TILE_ID_GROUND or bottomRight.id == TILE_ID_GROUND) then
     return true
-  else
-    return false
   end
+
+  -- checking collision with game objects
+  for k, object in pairs(self.player.level.objects) do
+    if object:collides(self.player) then
+      return true
+    end
+  end
+
+  return false
 end
 
 -- function to check if the player is colliding with any obstacle at left

@@ -52,7 +52,7 @@ function LevelGenerator.createLevel(width, height)
     -- number of boxes to render
     local boxcount = math.random(5)
     for y = 1, boxcount do
-      if tilemap.tiles[8][x + y - 1].id == TILE_ID_EMPTY then
+      if x + y - 1 <= width and tilemap.tiles[8][math.min(x + y - 1, width)].id == TILE_ID_EMPTY then
         goto continue
       end
 
